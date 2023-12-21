@@ -66,6 +66,7 @@ video {
     font-size: 27px;
 }
 
+
 select{
     padding: 10px;
     border: none;
@@ -121,9 +122,9 @@ button:active{
     font-size: 10px;
 }
 
+
 tr:last-of-type{
     background-color: blueviolet;
-    border-radius: 10px;
 }
 
 @media screen and (max-width: 1000px) {
