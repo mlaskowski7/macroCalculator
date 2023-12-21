@@ -1,26 +1,66 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
     <title>Macro Calculator by mlaskowski7</title>
 </head>
 <body>
-    <form method="POST">
-        {% csrf_token %}
-        <select name="food_consumed" id="food_consumed">
-            {% for food in foodData %}
-                <option value="{{food.name}}">{{food.name}}</option>
-            {% endfor %}    
-            
-        </select>
-        <button type="submit">Add</button>
-    </form>
 
-    {% for item in consumed_food %}
-        {{item.food_consumed.name}}: Carbs-{{item.food_consumed.protein}}, Protein - {{item.food_consumed.protein}}, Fats -{{item.food_consumed.fats}}, Calories -{{item.food_consumed.calories}}
-        <br>
-    {% endfor %}
-    
+    <!-- Background -->
+    <video class="video-background" loop muted autoplay>
+        <source src="{% static 'video/background.mp4' %}"></source>
+    </video>
+    <div class="video-overlay"></div>
+
+
+    <div class="header"><h1>Macro Calculator</h1></div>
+
+    <div class="container">
+        <p>What did you eat?</p>
+        <form method="POST">
+            {% csrf_token %}
+            <select name="food_consumed" id="food_consumed">
+                {% for food in foodData %}
+                    <option value="{{food.name}}">{{food.name}}</option>
+                {% endfor %}
+        
+            </select>
+            <button type="submit">Add</button>
+        </form>
+        <div class="show-button" id="show-button">Show your today's consumed food</div>
+        <table id="foodTable" hidden>
+            <thead>
+                <th scope="col">Food</th>
+                <th scope="col">Carbs/100g</th>
+                <th scope="col">Protein/100g</th>
+                <th scope="col">Fats/100g</th>
+                <th scope="col">Calories/100g</th>
+            </thead>
+            <tbody>
+                {% for item in consumed_food %}
+                    <tr>
+                        <td>{{item.food_consumed.name}}</td>
+                        <td>{{item.food_consumed.carbs}}</td>
+                        <td>{{item.food_consumed.protein}}</td>
+                        <td>{{item.food_consumed.fats}}</td>
+                        <td>{{item.food_consumed.calories}}</td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <td id="name">Total</td>
+                    <td id="carbs"></td>
+                    <td id="protein"></td>
+                    <td id="fats"></td>
+                    <td id="calories"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+   <script src="{% static 'js/script.js'%}"></script>
 </body>
 </html>
