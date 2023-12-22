@@ -41,9 +41,15 @@ video {
     background-color: rgba(0, 0, 0,0.7);
 }
 
+.wrapper{
+    display: flex;
+    flex-direction: row;
+}
+
 .container {
     color: white;
     margin: 0 auto;
+    margin-left: 20px;
     padding: 25px;
     border-radius: 15px;
     z-index: 2;
@@ -60,6 +66,7 @@ video {
 
 .header{
     display: flex;
+    flex-direction: column;
     color: white;
     z-index: 2  ;
     font-family: Caveat, sans-serif;
@@ -125,6 +132,35 @@ button:active{
 
 tr:last-of-type{
     background-color: blueviolet;
+}
+
+.progress-bar{
+    background-color: whitesmoke;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.progress{
+    background-color: rgb(82, 121, 23);
+    border-radius: 10px;
+    font-size: 15px;
+    text-align: center;
+}
+
+#show-buttonChart{
+    background-color: yellowgreen;
+}
+
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+.delete-btn{
+    border-radius: 7px;
+    background-color: red;
+    padding: 2px;
 }
 
 @media screen and (max-width: 1000px) {

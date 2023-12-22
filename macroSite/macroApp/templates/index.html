@@ -1,27 +1,8 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-    <title>Macro Calculator by mlaskowski7</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-    <!-- Background -->
-    <video class="video-background" loop muted autoplay>
-        <source src="{% static 'video/background.mp4' %}"></source>
-    </video>
-    <div class="video-overlay"></div>
-
-
-    <div class="header">
-        <h1>Macro Calculator</h1>
-    </div>
-
+{% block content %}
+<div class="wrapper">
     <div class="container">
-
         <p>What did you eat?</p>
         <form method="POST">
             {% csrf_token %}
@@ -29,11 +10,11 @@
                 {% for food in foodData %}
                     <option value="{{food.name}}">{{food.name}}</option>
                 {% endfor %}
-        
+    
             </select>
             <button type="submit">Add</button>
         </form>
-        <div class="show-button" id="show-button">Show your today's consumed food</div>
+        <div class="show-button" id="show-buttonList">Show your today's consumed food list</div>
         <table id="foodTable" hidden>
             <thead>
                 <th scope="col">Food</th>
@@ -50,9 +31,9 @@
                         <td>{{item.food_consumed.protein}}</td>
                         <td>{{item.food_consumed.fats}}</td>
                         <td>{{item.food_consumed.calories}}</td>
+                        <td><a class="delete-btn" href="{% url 'delete' item.id %}">Delete</a></td>
                     </tr>
                 {% endfor %}
-
                 <tr>
                     <td id="name">Total</td>
                     <td id="carbs"></td>
@@ -62,16 +43,19 @@
                 </tr>
             </tbody>
         </table>
+    
     </div>
-
-    <div class="header">
-        <h3>Your Calorie Goal</h3>
-        <div class="w3-border">
-            <div class="w3-grey" style="height:24px;width:20%"></div>
-        </div>
-          
+    <div class="container">
+        <p style="font-size: 20px;">Macronutrients Breakdown(grams):</p>
+        <canvas id="myChart" hidden></canvas>
     </div>
+</div>
 
-   <script src="{% static 'js/script.js'%}"></script>
-</body>
-</html>
+<div class="header">
+    <h3>2000 kcal per day progress</h3>
+    <div class="progress-bar">
+        <div class="progress" id="progress-bar" style="height:24px;width:50%">50%</div>
+    </div>
+      
+</div>
+{% endblock %}
