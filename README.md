@@ -1,5 +1,5 @@
 # macroCalculator
-macroCalculator is my web app, which is use for keeping my diet, it helps me to keep the macros, analyze them and keeping macro goal.
+macroCalculator is my web app, which I use for keeping my diet, it helps me to keep the macros, analyze them and keeping macro goal.
 I used python, django framework for back end and html,css, javascript for frontend.
 The site contains video background from pixabay, I also used Chart.js.
 To run the server run these commands, while in project directory:
